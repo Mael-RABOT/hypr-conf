@@ -1,0 +1,23 @@
+// -*- mode: jsonc -*-
+// Right Monitor (eDP-1) - Workspaces 7, 8, 9
+{
+    "height": 32,
+    "spacing": 2,
+    "output": "eDP-1",
+
+    // Include centralized modules
+    "include": ["~/.config/waybar/modules.jsonc"],
+
+    // Module layout
+    "modules-left": [
+        "clock#time"
+    ],
+    "modules-center": [
+        "hyprland/workspaces#right"
+    ],
+    "modules-right": [
+        "network#simple",
+        "battery",
+        "custom/power"
+    ]
+}

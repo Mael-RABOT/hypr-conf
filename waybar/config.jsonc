@@ -1,0 +1,27 @@
+// -*- mode: jsonc -*-
+// Refactored ASCII Art Waybar Configuration for KDE
+{
+    "height": 32,
+    "spacing": 2,
+
+    // Include centralized modules
+    "include": ["~/.config/waybar/modules.jsonc"],
+
+    // Module layout
+    "modules-left": [
+        "clock#date",
+        "custom/power",
+        "network",
+        "pulseaudio#microphone"
+    ],
+    "modules-center": [
+        "clock#time"
+    ],
+    "modules-right": [
+        "battery",
+        "pulseaudio",
+        "temperature",
+        "cpu",
+        "memory"
+    ]
+}

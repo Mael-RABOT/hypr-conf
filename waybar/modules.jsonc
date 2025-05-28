@@ -1,0 +1,275 @@
+// -*- mode: jsonc -*-
+// Centralized Waybar Modules Configuration
+// This file contains all module definitions used across different Waybar configurations
+
+// ========================================
+// ICON REFERENCE GUIDE
+// ========================================
+// Power and System Icons:
+//   Power button: \uF011
+//   Calendar: \uF073
+//   Clock: \uF017
+//
+// Network Icons:
+//   WiFi: \uF1EB
+//   Ethernet: \uF796
+//   Network disconnected: \uF127
+//
+// Audio Icons:
+//   Volume muted: \uF6A9
+//   Volume low: \uF026
+//   Volume medium: \uF027
+//   Volume high: \uF028
+//   Microphone: \uF130
+//
+// Battery Icons:
+//   Battery empty: \uF244
+//   Battery quarter: \uF243
+//   Battery half: \uF242
+//   Battery three quarters: \uF241
+//   Battery full: \uF240
+//   Battery charging: \uF5E7
+//   Battery plugged: \uF1E6
+//   Infinity symbol (for plugged-in state): \uF534
+//
+// Temperature Icons:
+//   Temperature very low: \uf2cb
+//   Temperature low: \uF2CA
+//   Temperature medium: \uF2C9
+//   Temperature high: \uF2C8
+//   Temperature very high: \uF2C7
+//
+// System Monitoring Icons:
+//   CPU: \uF2DB
+//   Memory/RAM: \uF538
+//
+// Media Control Icons:
+//   Previous track: \uF04A
+//   Play: \uF04B
+//   Pause: \uF04C
+//   Next track: \uF04E
+//
+// Progress Bar Icons (used for various meters):
+//   Empty: [ ░░░░ ]
+//   Quarter: [ █░░░ ]
+//   Half: [ ██░░ ]
+//   Three quarters: [ ███░ ]
+//   Full: [ ████ ]
+
+{
+    // ========================================
+    // CLOCK MODULES
+    // ========================================
+    "clock#date": {
+        "format": " {:%Y-%m-%d}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    "clock#time": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    // ========================================
+    // CUSTOM MODULES
+    // ========================================
+    "custom/power": {
+        "format": "\uF011",
+        "on-click": "wlogout",
+        "tooltip": true,
+        "tooltip-format": "Logout Manager"
+    },
+
+    // ========================================
+    // NETWORK MODULES
+    // ========================================
+    "network": {
+        "format-wifi": "\uF1EB {essid} ^{bandwidthUpBits} v{bandwidthDownBits}",
+        "format-ethernet": "\uF796 ^{bandwidthUpBits} v{bandwidthDownBits}",
+        "format-disconnected": "\uF127 DISCONNECTED",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}\nGateway: {gwaddr}",
+        "interval": 5,
+        "on-click": "alacritty -e nmtui"
+    },
+
+    "network#simple": {
+        "format-wifi": "\uF1EB  {essid}",
+        "format-ethernet": "\uF796 ETH",
+        "format-disconnected": "\uF127 DISC",
+        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
+        "interval": 5,
+        "on-click": "alacritty -e nmtui"
+    },
+
+    // ========================================
+    // AUDIO MODULES
+    // ========================================
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "\uF6A9 MUTE",
+        "format-icons": {
+            "default": ["\uF026  [ ░░░░ ]", "\uF027  [ █░░░ ]", "\uF027  [ ██░░ ]", "\uF027  [ ███░ ]", "\uF028  [ ████ ]"]
+        },
+        "on-click": "pavucontrol",
+        "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "tooltip": true
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "\uF130 [ {volume}% ]",
+        "format-source-muted": "\uF130 [ MUTE ]",
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "tooltip": true
+    },
+
+    // ========================================
+    // SYSTEM MONITORING MODULES
+    // ========================================
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": " {icon} {capacity}%",
+        "format-charging": "\uF5E7 {capacity}%",
+        "format-plugged": "\uF1E6 [ {capacity}% ]",
+        "format-icons": {
+            "default": ["\uF244 [ ░░░░ ]", "\uF243 [ █░░░ ]", "\uF242 [ ██░░ ]", "\uF241 [ ███░ ]", "\uF240 [ ████ ]"]
+        },
+        "tooltip-format": "Battery: {capacity}%\nTime remaining: {time}",
+        "tooltip-format-charging": "Battery: {capacity}%\nTime remaining: {time}",
+        "tooltip-format-plugged": "Battery: {capacity}%\nTime remaining: \uF534"
+    },
+
+    "temperature": {
+        "format": " {icon} {temperatureC}°C",
+        "format-icons": ["\uf2cb [ ░░░░ ]", "\uF2CA [ █░░░ ]", "\uF2C9 [ ██░░ ]", "\uF2C8 [ ███░ ]", "\uF2C7 [ ████ ]"],
+        "tooltip": true,
+        "interval": 2,
+        "on-click": "alacritty -e btm"
+    },
+
+    "cpu": {
+        "format": "\uF2DB {icon} {usage}%",
+        "format-icons": ["[ ░░░░ ]", "[ █░░░ ]", "[ ██░░ ]", "[ ███░ ]", "[ ████ ]"],
+        "tooltip": true,
+        "interval": 2,
+        "on-click": "alacritty -e btm"
+    },
+
+    "memory": {
+        "format": "\uF538 {icon} {percentage}%",
+        "format-icons": ["[ ░░░░ ]", "[ █░░░ ]", "[ ██░░ ]", "[ ███░ ]", "[ ████ ]"],
+        "tooltip-format": "Memory: {used:0.1f}G/{total:0.1f}G ({percentage}%)",
+        "interval": 2,
+        "on-click": "alacritty -e btm"
+    },
+
+    // ========================================
+    // WORKSPACE MODULES (Monitor-specific)
+    // ========================================
+    "hyprland/workspaces#left": {
+        "format": "{icon}",
+        "all-outputs": false,
+        "active-only": false,
+        "disable-scroll": true,
+        "warp-on-scroll": false,
+        "format-icons": {
+            "1": "[ Α ]",
+            "2": "[ Β ]",
+            "3": "[ Γ ]",
+            "default": "[ {id} ]"
+        },
+        "persistent-workspaces": {
+            "DP-3": [1, 2, 3]
+        },
+        "on-click": "activate",
+        "sort-by-number": true,
+        "show-special": false,
+        "ignore-workspaces": ["4", "5", "6", "7", "8", "9"]
+    },
+
+    "hyprland/workspaces#center": {
+        "format": "{icon}",
+        "all-outputs": false,
+        "active-only": false,
+        "disable-scroll": true,
+        "warp-on-scroll": false,
+        "format-icons": {
+            "4": "[ Δ ]",
+            "5": "[ Ε ]",
+            "6": "[ Ζ ]",
+            "default": "[ {id} ]"
+        },
+        "persistent-workspaces": {
+            "DP-2": [4, 5, 6]
+        },
+        "on-click": "activate",
+        "sort-by-number": true,
+        "show-special": false,
+        "ignore-workspaces": ["1", "2", "3", "7", "8", "9"]
+    },
+
+    "hyprland/workspaces#right": {
+        "format": "{icon}",
+        "all-outputs": false,
+        "active-only": false,
+        "disable-scroll": true,
+        "warp-on-scroll": false,
+        "format-icons": {
+            "7": "[ Η ]",
+            "8": "[ Θ ]",
+            "9": "[ Ι ]",
+            "default": "[ {id} ]"
+        },
+        "persistent-workspaces": {
+            "eDP-1": [7, 8, 9]
+        },
+        "on-click": "activate",
+        "sort-by-number": true,
+        "show-special": false,
+        "ignore-workspaces": ["1", "2", "3", "4", "5", "6"]
+    },
+
+    // ========================================
+    // MEDIA CONTROL MODULES
+    // ========================================
+    "custom/media-prev": {
+        "format": "\uF04A",
+        "on-click": "playerctl previous",
+        "tooltip": "Previous Track"
+    },
+
+    "custom/media-play-pause": {
+        "format": "{}",
+        "exec": "playerctl status --format '{{status}}' 2>/dev/null | sed 's/Playing/\uF04C/; s/Paused/\uF04B/; s/Stopped/\uF04B/' || echo '\uF04B'",
+        "on-click": "playerctl play-pause",
+        "tooltip": "Play/Pause",
+        "interval": 1,
+        "signal": 8
+    },
+
+    "custom/media-next": {
+        "format": "\uF04E",
+        "on-click": "playerctl next",
+        "tooltip": "Next Track"
+    },
+
+    "custom/media-title": {
+        "format": "{}",
+        "exec": "playerctl metadata --format '{{title}}'",
+        "on-click": "playerctl play-pause",
+        "tooltip": true,
+        "tooltip-format": "{}",
+        "interval": 1,
+        "signal": 8,
+        "max-length": 30
+    },
+
+    "custom/rofi": {
+        "format": "[ App ]",
+        "on-click": "rofi -show drun",
+        "on-click-right": "rofi -show filebrowser"
+    }
+}

@@ -1,0 +1,24 @@
+// -*- mode: jsonc -*-
+// Left Monitor (DP-3) - Workspaces 1, 2, 3
+{
+    "height": 32,
+    "spacing": 2,
+    "output": "DP-3",
+
+    // Include centralized modules
+    "include": ["~/.config/waybar/modules.jsonc"],
+
+    // Module layout
+    "modules-left": [
+        "clock#date",
+        "clock#time",
+        "custom/power"
+    ],
+    "modules-center": [
+        "hyprland/workspaces#left"
+    ],
+    "modules-right": [
+        "network#simple",
+        "pulseaudio#microphone"
+    ]
+}

@@ -1,0 +1,98 @@
+/* ASCII Art Style for wlogout - Matching Waybar Theme */
+
+* {
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+    transition: none;
+}
+
+window {
+    font-family: "Courier New", "DejaVu Sans Mono", "Liberation Mono", monospace;
+    font-size: 14px;
+    font-weight: bold;
+    color: #e0e0e0;
+    background-color: rgba(42, 42, 42, 0.95);
+}
+
+button {
+    color: #e0e0e0;
+    background-color: #3a3a3a;
+    border: 2px solid #87ceeb;
+    border-radius: 0;
+    margin: 10px;
+    padding: 20px;
+    font-family: "Courier New", "DejaVu Sans Mono", "Liberation Mono", monospace;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 120px;
+    min-height: 80px;
+}
+
+button:focus, button:active, button:hover {
+    background-color: #2a2a2a;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    outline-style: none;
+}
+
+/* Individual button styling with ASCII icons */
+#lock {
+    background-color: #3a3a3a;
+}
+
+#lock:focus, #lock:active, #lock:hover {
+    background-color: #2a2a2a;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+}
+
+#logout {
+    background-color: #3a3a3a;
+}
+
+#logout:focus, #logout:active, #logout:hover {
+    background-color: #2a2a2a;
+    color: #ffaa00;
+    border: 2px solid #ffaa00;
+}
+
+#shutdown {
+    background-color: #3a3a3a;
+}
+
+#shutdown:focus, #shutdown:active, #shutdown:hover {
+    background-color: #2a2a2a;
+    color: #ff6060;
+    border: 2px solid #ff6060;
+}
+
+#reboot {
+    background-color: #3a3a3a;
+}
+
+#reboot:focus, #reboot:active, #reboot:hover {
+    background-color: #2a2a2a;
+    color: #ff6060;
+    border: 2px solid #ff6060;
+}
+
+#suspend {
+    background-color: #3a3a3a;
+}
+
+#suspend:focus, #suspend:active, #suspend:hover {
+    background-color: #2a2a2a;
+    color: #87ceeb;
+    border: 2px solid #87ceeb;
+}
+
+#hibernate {
+    background-color: #3a3a3a;
+}
+
+#hibernate:focus, #hibernate:active, #hibernate:hover {
+    background-color: #2a2a2a;
+    color: #87ceeb;
+    border: 2px solid #87ceeb;
+}
