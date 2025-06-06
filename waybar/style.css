@@ -44,6 +44,7 @@ window#waybar {
 #custom-media-next,
 #custom-media-title,
 #custom-rofi,
+#custom-nightlight,
 #memory {
     background: #3a3a3a;
     color: #e0e0e0;
@@ -176,6 +177,14 @@ window#waybar {
 #temperature {
     background: #3a3a3a;
     color: #e0e0e0;
+}
+
+#custom-separator {
+    color: #e0e0e0;
+    font-family: "Courier New", "DejaVu Sans Mono", "Liberation Mono", monospace;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 8px;
 }
 
 /* Tooltip Styling */

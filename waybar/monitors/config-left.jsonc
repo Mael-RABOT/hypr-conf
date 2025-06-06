@@ -10,15 +10,20 @@
 
     // Module layout
     "modules-left": [
+        "custom/rofi",
         "clock#date",
         "clock#time",
+        "custom/separator",
         "custom/power"
     ],
     "modules-center": [
         "hyprland/workspaces#left"
     ],
     "modules-right": [
+        "custom/nightlight",
+        "custom/separator",
         "network#simple",
+        "custom/separator",
         "pulseaudio#microphone"
     ]
 }

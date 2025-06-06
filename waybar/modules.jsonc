@@ -179,7 +179,7 @@
             "1": "[ Α ]",
             "2": "[ Β ]",
             "3": "[ Γ ]",
-            "default": "[ {id} ]"
+            "default": "[ Ω ]"
         },
         "persistent-workspaces": {
             "DP-3": [1, 2, 3]
@@ -200,7 +200,7 @@
             "4": "[ Δ ]",
             "5": "[ Ε ]",
             "6": "[ Ζ ]",
-            "default": "[ {id} ]"
+            "default": "[ Ω ]"
         },
         "persistent-workspaces": {
             "DP-2": [4, 5, 6]
@@ -221,7 +221,7 @@
             "7": "[ Η ]",
             "8": "[ Θ ]",
             "9": "[ Ι ]",
-            "default": "[ {id} ]"
+            "default": "[ Ω ]"
         },
         "persistent-workspaces": {
             "eDP-1": [7, 8, 9]
@@ -243,10 +243,10 @@
 
     "custom/media-play-pause": {
         "format": "{}",
-        "exec": "playerctl status --format '{{status}}' 2>/dev/null | sed 's/Playing/\uF04C/; s/Paused/\uF04B/; s/Stopped/\uF04B/' || echo '\uF04B'",
+        "exec": "if playerctl status >/dev/null 2>&1; then case $(playerctl status) in Playing) echo '\uF04C' ;; Paused) echo '\uF04B' ;; *) echo '\uF04B' ;; esac; else echo '\uF05E'; fi",
         "on-click": "playerctl play-pause",
         "tooltip": "Play/Pause",
-        "interval": 1,
+        "interval": 2,
         "signal": 8
     },
 
@@ -258,11 +258,12 @@
 
     "custom/media-title": {
         "format": "{}",
-        "exec": "playerctl metadata --format '{{title}}'",
+        "exec": "playerctl metadata --format '{{title}}' 2>/dev/null || echo 'No Media'",
         "on-click": "playerctl play-pause",
+        "on-click-right": "~/.config/waybar/scripts/fum-media.sh interface",
         "tooltip": true,
         "tooltip-format": "{}",
-        "interval": 1,
+        "interval": 2,
         "signal": 8,
         "max-length": 30
     },
@@ -271,5 +272,22 @@
         "format": "[ App ]",
         "on-click": "rofi -show drun",
         "on-click-right": "rofi -show filebrowser"
+    },
+
+    "custom/separator": {
+        "format": " | ",
+        "tooltip": false,
+        "interval": 0
+    },
+
+    "custom/nightlight": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/nightlight-toggle.sh status",
+        "on-click": "~/.config/waybar/scripts/nightlight-toggle.sh toggle",
+        "on-click-right": "~/.config/waybar/scripts/nightlight-config.sh menu",
+        "tooltip": true,
+        "tooltip-format": "Left click: Toggle night/day mode\nRight click: Configure settings",
+        "interval": 2,
+        "signal": 9
     }
 }

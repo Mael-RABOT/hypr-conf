@@ -176,37 +176,49 @@ show_cheat_sheet() {
     BOLD="\033[1m"
 
     # Define the total box width (including borders)
-    BOX_WIDTH=80
-    CONTENT_WIDTH=$((BOX_WIDTH - 2))  # 78 characters for content
+    BOX_WIDTH=85
+    CONTENT_WIDTH=$((BOX_WIDTH - 2))  # 83 characters for content
 
     echo -e "
-${BLUE}╔══════════════════════════════════════════════════════════════════════════════╗${RESET}
-${BLUE}║${RESET}                          ${GREEN}[ HYPRLAND CHEAT SHEET ]${RESET}                            ${BLUE}║${RESET}
-${BLUE}╠══════════════════════════════════════════════════════════════════════════════╣${RESET}
+${BLUE}╔═══════════════════════════════════════════════════════════════════════════════════╗${RESET}
+${BLUE}║${RESET}                          ${GREEN}[ HYPRLAND CHEAT SHEET ]${RESET}                                 ${BLUE}║${RESET}
+${BLUE}╠═══════════════════════════════════════════════════════════════════════════════════╣${RESET}
 ${BLUE}║${RESET}$(printf "%*s" $CONTENT_WIDTH "")${BLUE}║${RESET}"
 
     # Parse sections from binds.conf and generate content
     sections=(
         "BASIC ACTIONS"
-        "WORKSPACE SWITCHING (1-9)"
+        "WORKSPACE SWITCHING"
         "MOVE WINDOW TO WORKSPACE"
+        "MOVE WINDOW TO WORKSPACE SILENTLY"
         "MONITOR FOCUS SWITCHING"
+        "WORKSPACE SCROLLING"
+        "ADVANCED WORKSPACE MANAGEMENT"
         "SCREENSHOT BINDINGS"
+        "SYSTEM RELOAD BINDINGS"
+        "WAYBAR DEFAULT MODE"
         "MEDIA AND HARDWARE KEYS"
-        "SPECIAL WORKSPACE (SCRATCHPAD)"
+        "SPECIAL WORKSPACE"
         "WORKSPACE MANAGEMENT SCRIPTS"
+        "WINDOW FOCUS MOVEMENT"
     )
 
     for section in "${sections[@]}"; do
         display_name=$(case "$section" in
             "BASIC ACTIONS") echo "WINDOW MANAGEMENT" ;;
-            "WORKSPACE SWITCHING (1-9)" ) echo "WORKSPACE NAVIGATION" ;;
-            "MOVE WINDOW TO WORKSPACE") echo "WINDOW MOVEMENT" ;;
+            "WORKSPACE SWITCHING") echo "WORKSPACE NAVIGATION (AZERTY)" ;;
+            "MOVE WINDOW TO WORKSPACE") echo "WINDOW MOVEMENT (AZERTY)" ;;
+            "MOVE WINDOW TO WORKSPACE SILENTLY") echo "SILENT WINDOW MOVEMENT" ;;
             "MONITOR FOCUS SWITCHING") echo "MONITOR MANAGEMENT" ;;
+            "WORKSPACE SCROLLING") echo "WORKSPACE SCROLLING" ;;
+            "ADVANCED WORKSPACE MANAGEMENT") echo "WORKSPACE NAVIGATION" ;;
             "SCREENSHOT BINDINGS") echo "SCREENSHOTS" ;;
+            "SYSTEM RELOAD BINDINGS") echo "SYSTEM RELOAD" ;;
+            "WAYBAR DEFAULT MODE") echo "WAYBAR CONTROLS" ;;
             "MEDIA AND HARDWARE KEYS") echo "SYSTEM CONTROLS" ;;
-            "SPECIAL WORKSPACE (SCRATCHPAD)") echo "SPECIAL FEATURES" ;;
+            "SPECIAL WORKSPACE") echo "SPECIAL FEATURES" ;;
             "WORKSPACE MANAGEMENT SCRIPTS") echo "WORKSPACE SCRIPTS" ;;
+            "WINDOW FOCUS MOVEMENT") echo "WINDOW FOCUS" ;;
             *) echo "$section" ;;
         esac)
 
@@ -224,7 +236,7 @@ ${BLUE}║${RESET}$(printf "%*s" $CONTENT_WIDTH "")${BLUE}║${RESET}"
             # Check if we'\''re entering the target section
             if [[ "$line" =~ ^#[[:space:]]*SECTION:[[:space:]]*(.+)$ ]]; then
                 current_section="${BASH_REMATCH[1]}"
-                if [[ "$current_section" == "$section" ]]; then
+                if [[ "$current_section" == *"$section"* ]]; then
                     in_section=true
                     continue
                 else
@@ -400,7 +412,7 @@ ${BLUE}║${RESET}$(printf "%*s" $CONTENT_WIDTH "")${BLUE}║${RESET}"
 
     echo -e "${BLUE}║${RESET}$(printf "%*s" $CONTENT_WIDTH "")${BLUE}║${RESET}"
 
-    echo -e "${BLUE}╚══════════════════════════════════════════════════════════════════════════════╝${RESET}
+    echo -e "${BLUE}╚═══════════════════════════════════════════════════════════════════════════════════╝${RESET}
 
 ${GREEN}[ Press any key to close this cheat sheet ]${RESET}"
     read -n 1 -s

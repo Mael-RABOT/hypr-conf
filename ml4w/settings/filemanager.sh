@@ -1,1 +1,2 @@
-dolphin
+#dolphin
+kitty -e superfile

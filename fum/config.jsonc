@@ -1,0 +1,223 @@
+{
+  "players": ["spotify", "lollypop", "org.mpris.MediaPlayer2.mpv", "org.mpris.MediaPlayer2.firefox", "org.mpris.MediaPlayer2.chromium", "chromium"],
+  "use_active_player": true,
+  "fps": 15,
+  "keybinds": {
+    "esc;q": "quit()",
+    "h": "prev()",
+    "l": "next()",
+    " ": "play_pause()",
+    "k": "volume(+5)",
+    "j": "volume(-5)",
+    "s": "shuffle_toggle()",
+    "r": "loop_cycle()",
+    ".": "forward(5000)",
+    ",": "backward(5000)"
+  },
+  "align": "center",
+  "direction": "horizontal",
+  "flex": "start",
+  "width": 80,
+  "height": 24,
+  "border": true,
+  "padding": [1, 2],
+  "bg": "reset",
+  "fg": "white",
+  "cover_art_ascii": "~/.config/fum/ascii.txt",
+  "layout": [
+    {
+      "type": "container",
+      "width": 42,
+      "direction": "vertical",
+      "flex": "center",
+      "padding": [1, 1],
+      "children": [
+        {
+          "type": "cover-art",
+          "width": 40,
+          "height": 18,
+          "resize": "scale"
+        },
+        {
+          "type": "empty",
+          "size": 1
+        },
+        {
+          "type": "label",
+          "text": "♪ Now Playing ♪",
+          "align": "center",
+          "bold": true,
+          "fg": "lightcyan"
+        }
+      ]
+    },
+    {
+      "type": "empty",
+      "size": 2
+    },
+    {
+      "type": "container",
+      "direction": "vertical",
+      "flex": "start",
+      "padding": [1, 1],
+      "children": [
+        {
+          "type": "container",
+          "direction": "vertical",
+          "flex": "start",
+          "border": false,
+          "padding": [1, 0],
+          "children": [
+            {
+              "type": "label",
+              "text": "$title",
+              "align": "center",
+              "bold": true,
+              "truncate": true,
+              "fg": "lightyellow"
+            },
+            {
+              "type": "label",
+              "text": "$artists",
+              "align": "center",
+              "truncate": true,
+              "fg": "lightgreen"
+            },
+            {
+              "type": "label",
+              "text": "$album",
+              "align": "center",
+              "truncate": true,
+              "fg": "lightblue"
+            }
+          ]
+        },
+        {
+          "type": "empty",
+          "size": 2
+        },
+        {
+          "type": "container",
+          "height": 1,
+          "flex": "space-around",
+          "border": false,
+          "children": [
+            {
+              "type": "button",
+              "text": "󰒮",
+              "action": "prev()",
+              "bold": true,
+              "fg": "lightmagenta"
+            },
+            {
+              "type": "button",
+              "text": "$status-icon",
+              "action": "play_pause()",
+              "bold": true,
+              "fg": "lightred"
+            },
+            {
+              "type": "button",
+              "text": "󰒭",
+              "action": "next()",
+              "bold": true,
+              "fg": "lightmagenta"
+            }
+          ]
+        },
+        {
+          "type": "empty",
+          "size": 2
+        },
+        {
+          "type": "container",
+          "direction": "vertical",
+          "border": false,
+          "children": [
+            {
+              "type": "progress",
+              "size": 42,
+              "direction": "horizontal",
+              "progress": {
+                "char": "━",
+                "fg": "lightgreen",
+                "bg": "reset"
+              },
+              "empty": {
+                "char": "─",
+                "fg": "darkgray",
+                "bg": "reset"
+              }
+            },
+            {
+              "type": "container",
+              "height": 1,
+              "flex": "space-between",
+              "children": [
+                {
+                  "type": "label",
+                  "text": "$position-ext",
+                  "align": "left",
+                  "fg": "white"
+                },
+                {
+                  "type": "label",
+                  "text": "$length-ext",
+                  "align": "right",
+                  "fg": "white"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "empty",
+          "size": 2
+        },
+        {
+          "type": "container",
+          "direction": "vertical",
+          "border": false,
+          "children": [
+            {
+              "type": "container",
+              "height": 1,
+              "flex": "space-between",
+              "children": [
+                {
+                  "type": "label",
+                  "text": "Volume:",
+                  "align": "left",
+                  "bold": true,
+                  "fg": "white"
+                },
+                {
+                  "type": "label",
+                  "text": "$volume%",
+                  "align": "right",
+                  "bold": true,
+                  "fg": "lightyellow"
+                }
+              ]
+            },
+            {
+              "type": "volume",
+              "size": 42,
+              "direction": "horizontal",
+              "volume": {
+                "char": "█",
+                "fg": "lightblue",
+                "bg": "reset"
+              },
+              "empty": {
+                "char": "░",
+                "fg": "darkgray",
+                "bg": "reset"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

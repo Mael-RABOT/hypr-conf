@@ -1,0 +1,63 @@
+# Waybar Style Theme for Superfile
+# Matches the retro ASCII-art style from waybar config
+# Colors based on: dark gray backgrounds, sky blue accents, bright green highlights
+
+# Code syntax highlight theme (matches the retro/terminal style)
+code_syntax_highlight = "monokai"
+
+# ========= Border =========
+file_panel_border = "#87ceeb"
+sidebar_border = "#87ceeb"
+footer_border = "#87ceeb"
+
+# ========= Border Active =========
+file_panel_border_active = "#00ff00"
+sidebar_border_active = "#00ff00"
+footer_border_active = "#00ff00"
+modal_border_active = "#87ceeb"
+
+# ========= Background (bg) =========
+full_screen_bg = "#2a2a2a"
+file_panel_bg = "#3a3a3a"
+sidebar_bg = "#3a3a3a"
+footer_bg = "#3a3a3a"
+modal_bg = "#2a2a2a"
+
+# ========= Foreground (fg) =========
+full_screen_fg = "#e0e0e0"
+file_panel_fg = "#e0e0e0"
+sidebar_fg = "#e0e0e0"
+footer_fg = "#e0e0e0"
+modal_fg = "#e0e0e0"
+
+# ========= Special Color =========
+cursor = "#00ff00"
+correct = "#00ff00"
+error = "#ff6060"
+hint = "#87ceeb"
+cancel = "#ff6060"
+# Gradient color can only have two color!
+gradient_color = ["#87ceeb", "#00ff00"]
+
+# ========= File Panel Special Items =========
+file_panel_top_directory_icon = "#00ff00"
+file_panel_top_path = "#87ceeb"
+file_panel_item_selected_fg = "#00ff00"
+file_panel_item_selected_bg = "#4a4a4a"
+
+# ========= Sidebar Special Items =========
+sidebar_title = "#87ceeb"
+sidebar_item_selected_fg = "#00ff00"
+sidebar_item_selected_bg = "#4a4a4a"
+sidebar_divider = "#808080"
+
+# ========= Modal Special Items =========
+modal_cancel_fg = "#e0e0e0"
+modal_cancel_bg = "#ff6060"
+
+modal_confirm_fg = "#2a2a2a"
+modal_confirm_bg = "#00ff00"
+
+# ========= Help Menu =========
+help_menu_hotkey = "#00ff00"
+help_menu_title = "#87ceeb"

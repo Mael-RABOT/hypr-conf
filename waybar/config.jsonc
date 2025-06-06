@@ -9,19 +9,28 @@
 
     // Module layout
     "modules-left": [
+        "custom/rofi",
         "clock#date",
-        "custom/power",
-        "network",
-        "pulseaudio#microphone"
+        "custom/media-prev",
+        "custom/media-play-pause",
+        "custom/media-next",
+        "custom/separator",
+        "custom/media-title"
     ],
     "modules-center": [
         "clock#time"
     ],
     "modules-right": [
-        "battery",
         "pulseaudio",
-        "temperature",
+        "network",
+        "battery",
         "cpu",
-        "memory"
+        "memory",
+        "temperature",
+        "custom/nightlight",
+        "custom/separator",
+        "clock#date",
+        "custom/separator",
+        "custom/power"
     ]
 }

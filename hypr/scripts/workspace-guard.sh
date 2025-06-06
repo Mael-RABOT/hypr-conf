@@ -16,16 +16,16 @@ cleanup_unauthorized_workspaces() {
         fi
 
         # Check if workspace is in allowed list
-        if [[ ! " ${ALLOWED_WORKSPACES[@]} " =~ " ${workspace} " ]]; then
+        if [[ ! " ${ALLOWED_WORKSPACES[*]} " =~ " ${workspace} " ]]; then
             echo "Unauthorized workspace $workspace detected, removing..."
+
+            # Get the monitor associated with the unauthorized workspace
+            monitor=$(hyprctl workspaces -j | jq -r ".[] | select(.id == $workspace) | .monitor")
 
             # Move any windows from unauthorized workspace to appropriate workspace
             windows=$(hyprctl clients -j | jq -r ".[] | select(.workspace.id == $workspace) | .address")
 
             for window in $windows; do
-                # Determine target workspace based on current monitor
-                monitor=$(hyprctl clients -j | jq -r ".[] | select(.address == \"$window\") | .monitor")
-
                 case $monitor in
                     "DP-3")   target_workspace=1 ;;  # Left monitor
                     "DP-2")   target_workspace=4 ;;  # Center monitor
@@ -39,6 +39,14 @@ cleanup_unauthorized_workspaces() {
 
             # Send notification about the cleanup
             notify-send "Workspace Guard" "Unauthorized workspace $workspace was removed. Only workspaces 1-9 are allowed."
+
+            # Switch monitor to a valid workspace
+            case $monitor in
+                "DP-3")   hyprctl dispatch workspace 1 ;;  # Left monitor
+                "DP-2")   hyprctl dispatch workspace 4 ;;  # Center monitor
+                "eDP-1")  hyprctl dispatch workspace 7 ;;  # Right monitor
+                *)        hyprctl dispatch workspace 4 ;;  # Default to center
+            esac
         fi
     done
 }
