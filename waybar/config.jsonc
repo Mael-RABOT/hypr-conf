@@ -15,18 +15,21 @@
         "custom/media-play-pause",
         "custom/media-next",
         "custom/separator",
-        "custom/media-title"
+        "custom/media-title",
+        "custom/separator",
+        "pulseaudio",
+        "custom/separator",
+        "network"
     ],
     "modules-center": [
         "clock#time"
     ],
     "modules-right": [
-        "pulseaudio",
-        "network",
         "battery",
         "cpu",
         "memory",
         "temperature",
+        "custom/separator",
         "custom/nightlight",
         "custom/separator",
         "clock#date",

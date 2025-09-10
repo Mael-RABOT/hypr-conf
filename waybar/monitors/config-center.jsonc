@@ -11,13 +11,12 @@
     // Module layout
     "modules-left": [
         "custom/rofi",
+        "clock#date",
         "clock#time",
         "custom/separator",
         "custom/media-prev",
-        "custom/media-play-pause",
+        "custom/media-title",
         "custom/media-next",
-        "custom/separator",
-        "custom/media-title"
     ],
     "modules-center": [
         "hyprland/workspaces#center"
